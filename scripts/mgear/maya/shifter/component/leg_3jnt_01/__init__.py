@@ -480,6 +480,7 @@ class Component(component.Main):
         self.jnt_pos.append([self.end_ref, 'end'])
 
         # match IK FK references
+<<<<<<< HEAD
         self.match_fk0_off = primitive.addTransform(
             self.root,
             self.getName("matchFk0_npo"),
@@ -528,6 +529,19 @@ class Component(component.Main):
         # add visual reference
         self.line_ref = icon.connection_display_curve(
             self.getName("visalRef"), [self.upv_ctl, self.knee_ctl])
+=======
+        self.match_fk0_off = pri.addTransform(self.root, self.getName("matchFk0_npo"), tra.getTransform(self.fk_ctl[1]))
+        self.match_fk0 = pri.addTransform(self.match_fk0_off, self.getName("fk0_mth"), tra.getTransform(self.fk_ctl[0]))
+        self.match_fk1_off = pri.addTransform(self.root, self.getName("matchFk1_npo"), tra.getTransform(self.fk_ctl[2]))
+        self.match_fk1 = pri.addTransform(self.match_fk1_off, self.getName("fk1_mth"), tra.getTransform(self.fk_ctl[1]))
+        self.match_fk2_off = pri.addTransform(self.root, self.getName("matchFk2_npo"), tra.getTransform(self.fk_ctl[3]))
+        self.match_fk2 = pri.addTransform(self.match_fk2_off, self.getName("fk2_mth"), tra.getTransform(self.fk_ctl[2]))
+        self.match_fk3 = pri.addTransform(self.ik_ctl, self.getName("fk3_mth"), tra.getTransform(self.fk_ctl[3]))
+
+        self.match_ik = pri.addTransform(self.fk3_ctl, self.getName("ik_mth"), tra.getTransform(self.ik_ctl))
+        self.match_ikUpv = pri.addTransform(self.fk0_ctl, self.getName("upv_mth"), tra.getTransform(self.upv_ctl))
+
+>>>>>>> develop
 
     def addAttributes(self):
 
@@ -1071,7 +1085,11 @@ class Component(component.Main):
         # setup leg o_node scale compensate
         pm.connectAttr(self.rig.global_ctl + ".scale", self.setup + ".scale")
 
+<<<<<<< HEAD
         # match IK/FK ref
+=======
+		# match IK/FK ref
+>>>>>>> develop
         pm.parentConstraint(self.legBones[0], self.match_fk0_off, mo=True)
         pm.parentConstraint(self.legBones[1], self.match_fk1_off, mo=True)
         pm.parentConstraint(self.legBones[2], self.match_fk2_off, mo=True)
